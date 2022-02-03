@@ -15,5 +15,8 @@ class AppColors {
   static const menuButtonGradient1 = Color(0xFF93D4F4);
   static const menuButtonGradient2 = Color(0xFF57BCE6);
 
+  static const textBlack = Color(0xFF38394B);
+  static const timeGrey = Color(0xFF777777);
+
 
 }

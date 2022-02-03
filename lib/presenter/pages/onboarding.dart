@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:nath_bot_app/presenter/components/vamos_conversar_button.dart';
 import 'package:nath_bot_app/theme/app_colors.dart';
+import 'package:nath_bot_app/theme/text_style.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class Onboarding extends StatefulWidget {
@@ -31,54 +32,68 @@ class OnboardingBody extends StatefulWidget {
 class _OnboardingBodyState extends State<OnboardingBody> {
   int activeIndex = 0;
 
-  Image image = Image.asset('assets/cofre.png');
+  Image image = Image.asset('assets/saco_1.png');
 
   final carousel = [
     Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: const [
-        Text('Olá'),
-        Text('Eu sou a Nath.'),
-        Padding(
-          padding: EdgeInsets.only(top: 16, right: 48),
+      children: [
+        Text(
+            'Olá 👋',
+        style: TextStyles.poppins32textBlack600,),
+        Text(
+            'Eu sou a Nath.',
+        style: TextStyles.poppins28textBlack600,),
+         Padding(
+          padding: const EdgeInsets.only(top: 16, right: 48),
           child: Text(
-              'Sou uma inteligência artificial que vai desfuder a sua vida financeira.'),
+              'Sou uma inteligência artificial que vai desfuder a sua vida financeira.',
+          style: TextStyles.poppins16grey400,),
         ),
       ],
     ),
     Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: const [
-        Text('Ajudo você'),
-        Text('a investir melhor'),
+      children: [
+        Text('Ajudo você',
+          style: TextStyles.poppins32textBlack600,),
+        Text('a investir melhor',
+          style: TextStyles.poppins28textBlack600,),
         Padding(
-          padding: EdgeInsets.only(top: 16, right: 48),
+          padding: const EdgeInsets.only(top: 16, right: 48),
           child: Text(
-              'Sou uma inteligência artificial que vai desfuder a sua vida financeira.'),
+              'Sou uma inteligência artificial que vai desfuder a sua vida financeira.',
+            style: TextStyles.poppins16grey400,),
         ),
       ],
     ),
     Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: const [
-        Text('Crie metas'),
-        Text('e as alcance'),
+      children: [
+        Text('Crie metas',
+          style: TextStyles.poppins32textBlack600,),
+        Text('e as alcance',
+          style: TextStyles.poppins28textBlack600,),
         Padding(
-          padding: EdgeInsets.only(top: 16, right: 48),
+          padding: const EdgeInsets.only(top: 16, right: 48),
           child: Text(
-              'Vou ajudar você a gerir sua renda extra e atingir suas metas.'),
+              'Vou ajudar você a gerir sua renda extra e atingir suas metas.',
+            style: TextStyles.poppins16grey400,),
         ),
       ],
     ),
     Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: const [
-        Text('Renda extra'),
-        Text('ah que festa'),
+      children: [
+        Text('Renda extra',
+          style: TextStyles.poppins32textBlack600,),
+        Text('ah que festa!',
+          style: TextStyles.poppins28textBlack600,),
         Padding(
-          padding: EdgeInsets.only(top: 16, right: 48),
+          padding: const EdgeInsets.only(top: 16, right: 48),
           child: Text(
-              'Vou ajudar você a gerir sua renda extra e atingir suas metas.'),
+              'Vou ajudar você a gerir sua renda extra e atingir suas metas.',
+            style: TextStyles.poppins16grey400,),
         ),
       ],
     ),
@@ -94,8 +109,8 @@ class _OnboardingBodyState extends State<OnboardingBody> {
             child: Center(
               child: Transform.scale(
                 scale: 1.5,
-                child: const CircleAvatar(
-                  backgroundColor: AppColors.lightPurple,
+                child: CircleAvatar(
+                  backgroundColor: AppColors.lightPurple.withOpacity(0.3),
                   radius: 190,
                 ),
               ),
@@ -118,8 +133,8 @@ class _OnboardingBodyState extends State<OnboardingBody> {
             child: Center(
               child: Transform.scale(
                 scale: 1.5,
-                child: const CircleAvatar(
-                  backgroundColor: AppColors.lightPurple,
+                child: CircleAvatar(
+                  backgroundColor: AppColors.lightPurple.withOpacity(0.2),
                   radius: 90,
                 ),
               ),
@@ -141,8 +156,6 @@ class _OnboardingBodyState extends State<OnboardingBody> {
             alignment: Alignment.bottomCenter,
             child: Container(
               width: MediaQuery.of(context).size.width,
-              // height: MediaQuery.of(context).size.height * 0.4,
-
               decoration: const BoxDecoration(
                   color: AppColors.white,
                   borderRadius:
@@ -156,7 +169,7 @@ class _OnboardingBodyState extends State<OnboardingBody> {
                     CarouselSlider.builder(
                       itemCount: carousel.length,
                       options: CarouselOptions(
-                          height: 120,
+
                           viewportFraction: 1,
                           enableInfiniteScroll: false,
                           onPageChanged: (index, reason) {
@@ -164,19 +177,18 @@ class _OnboardingBodyState extends State<OnboardingBody> {
                               activeIndex = index;
                               switch (index) {
                                 case 0:
-                                  image = Image.asset('assets/cofre.png', key: ValueKey<int>(index),);
+                                  image = Image.asset('assets/saco_1.png', key: ValueKey<int>(index),);
                                   break;
                                 case 1:
-                                  image = Image.asset('assets/montanha.png', key: ValueKey<int>(index));
+                                  image = Image.asset('assets/cofre_1.png', key: ValueKey<int>(index));
                                   break;
                                 case 2:
-                                  image = Image.asset('assets/cofre.png', key: ValueKey<int>(index));
+                                  image = Image.asset('assets/montanha_1.png', key: ValueKey<int>(index));
                                   break;
                                 case 3:
-                                  image = Image.asset('assets/montanha.png', key: ValueKey<int>(index));
+                                  image = Image.asset('assets/saco_1.png', key: ValueKey<int>(index));
                                   break;
                               }
-                              ;
                             });
                           }),
                       itemBuilder: (context, index, realIndex) {
@@ -188,11 +200,13 @@ class _OnboardingBodyState extends State<OnboardingBody> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        VamosConversarButton(onClick: () {}),
+                        VamosConversarButton(onClick: () async => await Navigator.pushNamed(context, '/chat_screen')),
                         AnimatedSmoothIndicator(
                           activeIndex: activeIndex,
                           count: carousel.length,
                           effect: const ExpandingDotsEffect(
+                            dotWidth: 10,
+                              dotHeight: 10,
                               dotColor: AppColors.lightGrey,
                               activeDotColor: AppColors.darkYellow),
                         )

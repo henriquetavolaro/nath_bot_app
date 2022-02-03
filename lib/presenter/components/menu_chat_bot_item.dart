@@ -6,6 +6,7 @@ class MenuChatBotItem extends StatefulWidget {
   final VoidCallback onClick;
   final Color itemColor1;
   final Color itemColor2;
+  final TextStyle textStyle;
 
   const MenuChatBotItem({
     Key? key,
@@ -13,6 +14,7 @@ class MenuChatBotItem extends StatefulWidget {
     required this.onClick,
     required this.itemColor1,
     required this.itemColor2,
+    required this.textStyle,
   }) : super(key: key);
 
   @override
@@ -29,21 +31,16 @@ class _MenuChatBotItemState extends State<MenuChatBotItem> {
         child: Material(
           borderRadius: BorderRadius.circular(14),
           elevation: 1,
-                  child: Container(
+          child: Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(14),
-                gradient: LinearGradient(
-                    colors: [
-                     widget.itemColor1,
-                     widget.itemColor2,
-                    ],
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight
-                )
-            ),
+                borderRadius: BorderRadius.circular(14),
+                gradient: LinearGradient(colors: [
+                  widget.itemColor1,
+                  widget.itemColor2,
+                ], begin: Alignment.centerLeft, end: Alignment.centerRight)),
             child: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: Text(widget.text),
+              child: Text(widget.text, style: widget.textStyle,),
             ),
           ),
         ),

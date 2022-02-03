@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:nath_bot_app/presenter/components/investimentos.dart';
 import 'package:nath_bot_app/presenter/components/menu_chat_bot_item.dart';
 import 'package:nath_bot_app/presenter/components/menu_icon.dart';
 import 'package:nath_bot_app/presenter/components/meus_gastos.dart';
 import 'package:nath_bot_app/presenter/components/nath_bot.dart';
+import 'package:nath_bot_app/presenter/components/renda_extra.dart';
+import 'package:nath_bot_app/presenter/components/selfie_financeira.dart';
 import 'package:nath_bot_app/presenter/components/user_chat.dart';
 import 'package:nath_bot_app/theme/app_colors.dart';
+import 'package:nath_bot_app/theme/text_style.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({Key? key}) : super(key: key);
@@ -22,6 +26,7 @@ class _ChatScreenState extends State<ChatScreen> {
     return Scaffold(
       backgroundColor: AppColors.iceGrey,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         elevation: 0,
         backgroundColor: AppColors.iceGrey,
         title: MenuIcon(
@@ -53,7 +58,7 @@ class _ChatScreenState extends State<ChatScreen> {
                       bottomRight: Radius.circular(50))),
               child: IconButton(
                 onPressed: () {},
-                icon: Icon(Icons.person_outline),
+                icon: const Icon(Icons.person_outline),
                 color: AppColors.purple,
               ),
             ),
@@ -91,11 +96,14 @@ class _ChatScreenBodyState extends State<ChatScreenBody> {
     const NathBot(
       text:
           'O-lá Abel, quanto tempo. Me fala, o que você quer fazer. Aproveita que eu tô fofa',
-
       cancel: true,
+      time: '22:02',
     ),
-    const UserChat(text: 'text'),
-    const MeusGastos()
+    SelfieFinanceira(time: '22:02')
+    // const UserChat(text: 'text', time: '22:02', alterar: true,),
+    // RendaExtra(time: '22:02',)
+    // Investimentos(time: '22:02',),
+    // const MeusGastos(time: '22:02',)
   ];
 
   _scrollToEnd() async {
@@ -121,11 +129,12 @@ class _ChatScreenBodyState extends State<ChatScreenBody> {
 
     return Column(
       children: [
-        SizedBox(
+        const SizedBox(
           height: 16,
         ),
         Expanded(
             child: ListView.builder(
+              shrinkWrap: true,
                 controller: _scrollController,
                 itemCount: chatList.length,
                 itemBuilder: (context, index) {
@@ -150,23 +159,23 @@ class _ChatScreenBodyState extends State<ChatScreenBody> {
                         setState(() {
                           selected = i;
                         });
-                        Future.delayed(const Duration(seconds: 2), () {
+                        Future.delayed(const Duration(seconds: 1), () {
                           setState(() {
                             _isMenuOpen = !_isMenuOpen;
                             selected = '';
                           });
                         });
-                        Future.delayed(const Duration(seconds: 3), () {
+                        Future.delayed(const Duration(seconds: 2), () {
                           setState(() {
-                            chatList.add(UserChat(text: i));
+                            chatList.add(UserChat(text: i, time: '22:02', alterar: true,));
                           });
                         });
-                        Future.delayed(const Duration(milliseconds: 3500), () {
+                        Future.delayed(const Duration(milliseconds: 2300), () {
                           setState(() {
                             _scrollToEnd();
                           });
                         });
-                      },
+                      }, textStyle: i == selected ? TextStyles.poppins14white500 : TextStyles.poppins14timeGrey500,
                     )
                 ],
               ),
@@ -194,7 +203,7 @@ class _ChatScreenBodyState extends State<ChatScreenBody> {
                       decoration: const InputDecoration.collapsed(
                           hintText: "Digite aqui"),
                       onSubmitted: (text) {
-                        chatList.add(UserChat(text: text));
+                        chatList.add(UserChat(text: text, time: '22:02', alterar: true,));
                         setState(() {
                           _controller.clear();
                         });

@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:nath_bot_app/presenter/components/time_widget.dart';
 import 'package:nath_bot_app/theme/app_colors.dart';
+import 'package:nath_bot_app/theme/text_style.dart';
 
 class UserChat extends StatefulWidget {
   final String text;
+  final String time;
+  final bool alterar;
 
-  const UserChat({Key? key, required this.text}) : super(key: key);
+  const UserChat({
+    Key? key,
+    required this.text,
+    required this.time,
+    this.alterar = false,
+  }) : super(key: key);
 
   @override
   _UserChatState createState() => _UserChatState();
@@ -44,22 +53,21 @@ class _UserChatState extends State<UserChat> {
                           children: [
                             Text(
                               widget.text,
-                              style: const TextStyle(color: Colors.black54),
+                              style: TextStyles.poppins16timeGrey400,
                               softWrap: true,
                             ),
-                            const Padding(
-                              padding: EdgeInsets.only(top: 16),
-                              child: Text('Alterar'),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 16),
+                              child: Text(
+                                  'Alterar',
+                              style: TextStyles.nunito16purple400underline,),
                             )
                           ],
                         ),
                       ),
                     ),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 8.0),
-                    child: Text('22:02'),
-                  )
+                  const TimeWidget(time: '22:02')
                 ],
               ),
             ),

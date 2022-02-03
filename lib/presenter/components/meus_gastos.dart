@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_rounded_progress_bar/flutter_rounded_progress_bar.dart';
-import 'package:flutter_rounded_progress_bar/rounded_progress_bar_style.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:nath_bot_app/presenter/components/nath_bot.dart';
+import 'package:nath_bot_app/presenter/components/time_widget.dart';
 import 'package:nath_bot_app/theme/app_colors.dart';
+import 'package:nath_bot_app/theme/text_style.dart';
 
 class MeusGastos extends StatefulWidget {
-  const MeusGastos({Key? key}) : super(key: key);
+  final String time;
+  const MeusGastos({Key? key, required this.time}) : super(key: key);
 
   @override
   _MeusGastosState createState() => _MeusGastosState();
@@ -35,6 +36,7 @@ class _MeusGastosState extends State<MeusGastos> {
             text:
                 'Leonardo, estes são os seus gastos de janeiro até agora por categoria',
             isTop: true,
+            time: '0',
           ),
           Row(
             children: [
@@ -59,10 +61,24 @@ class _MeusGastosState extends State<MeusGastos> {
                       padding: const EdgeInsets.all(16.0),
                       child: Column(
                         children: [
-                          const Text('Gastos até 7 de janeiro'),
-                          const Padding(
+                           Text('Gastos até 7 de janeiro',
+                          style: TextStyles.nunito12grey600,),
+                          Padding(
                             padding: EdgeInsets.only(bottom: 16),
-                            child: Text('R\$ 6.795,93'),
+                            child: RichText(
+                              text: TextSpan(
+                                text: 'R\$ ',
+                                style: TextStyles.nunito16textBlack700,
+                                children: <TextSpan>[
+                                  TextSpan(
+                                      text: '6.795,93',
+                                      style: TextStyles.nunito22textBlack700
+                                  ),
+                                ],
+                              ),
+                            )
+
+                            // Text('R\$ 6.795,93'),
                           ),
                           ListView.builder(
                             shrinkWrap: true,
@@ -79,9 +95,9 @@ class _MeusGastosState extends State<MeusGastos> {
               ),
             ],
           ),
-          const Padding(
-            padding: EdgeInsets.only(right: 16),
-            child: Text('22:02'),
+          Padding(
+            padding: const EdgeInsets.only(right: 16),
+            child: TimeWidget(time: widget.time),
           )
         ],
       ),
@@ -123,16 +139,30 @@ class _MeusGastosCategoryState extends State<MeusGastosCategory> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 8.0),
-                  child: Text(widget.category),
+                  child: Text(
+                      widget.category,
+                  style: TextStyles.nunito14textBlack600,),
                 )
               ],
             ),
             Row(
               children: [
-                Text('R\$ ${widget.value}'),
+                RichText(
+                  text: TextSpan(
+                    text: 'R\$ ',
+                    style: TextStyles.nunito12grey600,
+                    children: <TextSpan>[
+                      TextSpan(
+                          text: widget.value,
+                          style: TextStyles.nunito14grey600
+                      ),
+                    ],
+                  ),
+                ),
                 Padding(
                   padding: const EdgeInsets.only(left: 12),
-                  child: Text('${widget.percentage}%'),
+                  child: Text('${widget.percentage}%',
+                  style: TextStyles.nunito14purple700,),
                 ),
               ],
             ),

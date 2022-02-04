@@ -104,6 +104,20 @@ class _OnboardingBodyState extends State<OnboardingBody> {
     return SafeArea(
       child: Stack(
         children: [
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  AppColors.purple,
+                  AppColors.purple.withOpacity(0.5)
+                ],
+                begin: Alignment.bottomRight,
+                end: Alignment.topLeft
+              )
+            ),
+          ),
           Transform.translate(
             offset: const Offset(0, -50),
             child: Center(
@@ -169,7 +183,6 @@ class _OnboardingBodyState extends State<OnboardingBody> {
                     CarouselSlider.builder(
                       itemCount: carousel.length,
                       options: CarouselOptions(
-
                           viewportFraction: 1,
                           enableInfiniteScroll: false,
                           onPageChanged: (index, reason) {
@@ -217,9 +230,13 @@ class _OnboardingBodyState extends State<OnboardingBody> {
               ),
             ),
           ),
-          AnimatedSwitcher(
-            duration: const Duration(milliseconds: 500),
-            child: image,
+          Container(
+            height: 500,
+            width: 500,
+            child: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 500),
+              child: image,
+            ),
           )
         ],
       ),

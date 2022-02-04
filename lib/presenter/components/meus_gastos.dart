@@ -124,6 +124,20 @@ class MeusGastosCategory extends StatefulWidget {
 }
 
 class _MeusGastosCategoryState extends State<MeusGastosCategory> {
+  bool _animation = false;
+  void _startAnimation(){
+    setState(() {
+      _animation = true;
+    });
+  }
+
+  @override
+  void initState() {
+    Future.delayed(Duration(seconds: 1), (){
+      _startAnimation();
+    });
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -183,18 +197,21 @@ class _MeusGastosCategoryState extends State<MeusGastosCategory> {
                   ),
                   ),
               ),
-              FractionallySizedBox(
-                widthFactor: widget.percentage/100,
-                child: Container(
-                  height: 11,
-                  decoration: BoxDecoration(
-                    gradient: const LinearGradient(
-                      colors: [
-                        AppColors.purple,
-                        AppColors.lightPurple
-                      ]
+              AnimatedSize(
+                duration: Duration(seconds: 1),
+                child: FractionallySizedBox(
+                  widthFactor: _animation ? widget.percentage/100 : 0,
+                  child: Container(
+                    height: 11,
+                    decoration: BoxDecoration(
+                      gradient: const LinearGradient(
+                        colors: [
+                          AppColors.purple,
+                          AppColors.lightPurple
+                        ]
+                      ),
+                      borderRadius: BorderRadius.circular(25)
                     ),
-                    borderRadius: BorderRadius.circular(25)
                   ),
                 ),
               )

@@ -16,7 +16,7 @@ dependencies:
   smooth_page_indicator: ^1.0.0+2
   font_awesome_flutter: ^9.0.0
   syncfusion_flutter_gauges: ^19.4.48
-  flutter_custom_clippers: ^2.0.0
+  showcaseview: ^1.1.4
   cupertino_icons: ^1.0.2
 
 dev_dependencies:

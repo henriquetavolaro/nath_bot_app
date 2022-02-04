@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:nath_bot_app/presenter/components/time_widget.dart';
 import 'package:nath_bot_app/theme/app_colors.dart';
 import 'package:nath_bot_app/theme/text_style.dart';

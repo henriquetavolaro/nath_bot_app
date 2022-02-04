@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nath_bot_app/presenter/pages/chat_screen.dart';
 import 'package:nath_bot_app/presenter/pages/onboarding.dart';
 import 'package:nath_bot_app/theme/app_colors.dart';
+import 'package:showcaseview/showcaseview.dart';
 
 class AppWidget extends StatefulWidget {
   const AppWidget({Key? key}) : super(key: key);
@@ -25,7 +26,7 @@ class _AppWidgetState extends State<AppWidget> {
       initialRoute: '/chat_screen',
       routes: {
         '/onboarding': (context) => const Onboarding(),
-        '/chat_screen': (context) => const ChatScreen(),
+        '/chat_screen': (context) => ShowCaseWidget(builder: Builder(builder: (_) => ChatScreen(),)),
       },
     );
   }
